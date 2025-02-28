@@ -5,9 +5,10 @@ public class Main {
         Manager manager = new Manager("0", "Michael Scott");
         EMS ems = new EMS("Dunder Mifflin, Scranton", manager);
 
+
         Scanner scanner = new Scanner(System.in);
 
-        String fileName;
+        String fileName = "";
 
         try {
             if(args[0] != null){
@@ -30,7 +31,7 @@ public class Main {
         System.out.print("Enter salary limit (or 0 for no limit): ");
         double limit = scanner.nextDouble();
         manager.setSalaryLimit(limit);
-//added another version of setSalaryLimit that has no parameters. This is fun!
+
         ems.askForSalaryLimit();
 
     }

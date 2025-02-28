@@ -28,7 +28,7 @@ public class EMS {
         //map'i boşuna yapmadık herhalde diyip ekledim key value pair olarak
             System.out.println("Successfully registered " + employee.getName() + " (ID: "+ employee.getId() +")." );
 
-        }// else { System.out.println(employee.getName() + " ("+ employee.getId() +") already exists."); }
+        } else { System.out.println(employee.getName() + " ("+ employee.getId() +") already exists."); }
     }
 
     public void removeEmployee(Employee employee) {
@@ -59,13 +59,24 @@ public class EMS {
             }
 
             String name = nameNmoney[0].trim();
+
+            if(name.isEmpty()){
+                System.out.println("Employee name missing on line: " + line);
+            continue;
+            }
+
+
+
+
+
             double dailySalary = 0; //initialize etmiş olmak için
 
                 try{
                     dailySalary = Double.parseDouble(nameNmoney[1].trim());
                 }catch(NumberFormatException e){
 
-                    if(line.equals("name,dailySalary")) {continue;}
+                    //Başlığı skipledim
+                    if(line.equalsIgnoreCase("name,dailySalary")) {continue;}
 
                         System.out.println("Wrong format for salary. Fix the number on line: " + line);
                         continue;
@@ -104,6 +115,7 @@ public class EMS {
                 //şimdi salaryMap'a key-value pair olarak koyacağım
 
                 salaryMap.put(theEmployeeInFileLine, monthlySalary);
+                theEmployeeInFileLine.setMonthlySalary(monthlySalary);
               //  System.out.printf("%s has monthly salary of %s dollars.\n", name, monthlySalary);
 
 
@@ -141,7 +153,7 @@ public class EMS {
 
             if(salary> limit){
                 System.out.println("REMOVING: " + employee.getName() + "\n REASON: SALARY EXCEEDS LIMIT");
-
+                System.out.println(employee.getName() + "'s salary was " + employee.getMonthlySalary());
                 iterator.remove(); //salaryMap'tan remove
                 //iterator ile removelamak safe diye yaptık.
                 employees.remove(employee); // setten remove

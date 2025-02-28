@@ -34,11 +34,7 @@ public class Manager {
 
     public void setSalaryLimit(double salaryLimit) {
         this.salaryLimit = salaryLimit;
+
     }
-    public void setSalaryLimit(){
-        System.out.print("Enter salary limit (or 0 for no limit): ");
-        Scanner scanner = new Scanner(System.in);
-        double limit = scanner.nextDouble();
-        this.setSalaryLimit(limit);
-    }
+
 }
